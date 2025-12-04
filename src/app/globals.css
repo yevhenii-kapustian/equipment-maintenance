@@ -6,7 +6,21 @@
   --color-orange: #F59F0A;
   --color-red: #EF4343;
   --color-dirty-white: #DFECC6;
-  
+  --color-artichoke: #8E9C78;  
+}
+
+@layer components {
+  .animation-btn {
+    @apply transition-all duration-200 ease-in-out
+  }
+
+  .green-btn {
+    @apply bg-(--color-army-green) text-white rounded-3xl hover:bg-(--color-artichoke)
+  }
+
+  .gray-btn {
+    @apply bg-gray-200 rounded-3xl hover:bg-gray-100
+  }
 }
 
 * {
