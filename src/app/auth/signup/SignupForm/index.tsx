@@ -8,8 +8,12 @@ import { SignUp } from "@/actions/sign-up"
 import { signUpSchema } from "@/actions/schemas"
 import Link from "next/link"
 import Logo from "@/components/Logo"
+import { useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
 
 const SignupForm = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+
     const {
             register,
             handleSubmit,
@@ -19,6 +23,10 @@ const SignupForm = () => {
         const { mutate, isPending, error } = useMutation({
             mutationFn: SignUp
         })
+
+        const toggleCheckPassword = () => {
+            setIsVisible(!isVisible)
+        }
 
     return(
         <>
@@ -42,7 +50,12 @@ const SignupForm = () => {
 
             <fieldset className="mt-5 flex flex-col">
                 <label htmlFor="password">Пароль</label>
-                <input placeholder="*****" type="text" className="py-2 px-4 rounded-xl border border-[#e0e0e0]" {...register("password")} id="password"/>
+                <div className="relative flex items-center">
+                    <input placeholder="∙∙∙∙∙" type={isVisible ? "text" : "password"} className="w-full py-2 px-4 rounded-xl border border-[#e0e0e0]" {...register("password")} id="password"/>
+                    <div onClick={toggleCheckPassword} className="absolute right-4 cursor-pointer">
+                        {isVisible ? <Eye /> : <EyeOff />}
+                    </div>
+                </div>
                 {errors.password && <ErrorMessage message={errors.password.message!}/>}
             </fieldset>
 

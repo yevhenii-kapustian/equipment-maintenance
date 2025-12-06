@@ -7,8 +7,12 @@ import { logInSchema } from "@/actions/schemas"
 import { useMutation } from "@tanstack/react-query"
 import ErrorMessage from "@/components/ErrorMessage"
 import Link from "next/link"
+import { Eye, EyeOff } from "lucide-react"
+import { useState } from "react"
 
 const LoginForm = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+
     const {
             register,
             handleSubmit,
@@ -18,6 +22,10 @@ const LoginForm = () => {
         const { mutate, data, isPending } = useMutation({
             mutationFn: LogIn
         })
+
+        const toggleCheckPassword = () => {
+            setIsVisible(!isVisible)
+        }
 
     return(
         <>
@@ -34,7 +42,12 @@ const LoginForm = () => {
 
             <fieldset className="mt-5 flex flex-col">
                 <label htmlFor="password">Пароль</label>
-                <input placeholder="*****" type="text" className="py-2 px-4 rounded-xl border border-[#e0e0e0]" {...register("password")} id="password"/>
+                <div className="relative flex items-center">
+                    <input placeholder="∙∙∙∙∙" type={isVisible ? "text" : "password"} className="w-full py-2 px-4 rounded-xl border border-[#e0e0e0]" {...register("password")} id="password"/>
+                    <div onClick={toggleCheckPassword} className="absolute right-4 cursor-pointer">
+                        {isVisible ? <Eye /> : <EyeOff />}
+                    </div>
+                </div>
                 {errors.password && <ErrorMessage message={errors.password.message!}/>}
             </fieldset>
 
