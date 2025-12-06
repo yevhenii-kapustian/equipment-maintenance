@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr/dist/main/createServerClient";
+import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server"
 
 export const middleware = async (request: NextRequest) => {
@@ -20,5 +21,16 @@ export const middleware = async (request: NextRequest) => {
     )
 
     const { data: {user} } = await supabase.auth.getUser()
+
+    const protectedRoutes = [
+        /^\/auth(\/.*)?$/
+    ]
+
+    if (user && protectedRoutes.some(routes => routes.test(request.nextUrl.pathname))) {
+        const newUrl = request.nextUrl.clone()
+        newUrl.pathname = "/"
+
+        return NextResponse.redirect(newUrl)
+    }
 
 }
