@@ -30,8 +30,8 @@ const NavLinks = () => {
                 fixed left-1/2 -translate-x-1/2 top-3
                 flex justify-center gap-20
                 px-10 py-4 rounded-3xl
-                backdrop-blur-md bg-white/30
-                duration-300 ease-out
+                backdrop-blur-sm bg-white/30
+                duration-300 ease-out z-50
                 ${isSticky ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'}
             `}
         >

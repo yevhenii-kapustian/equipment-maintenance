@@ -5,7 +5,7 @@ export default function MainLayout ({children}: {children: React.ReactNode}) {
     return(
     <>
     <Header/>
-    <main className="py-10 px-40 max-xl:px-10 flex-1">
+    <main className="py-10 px-40 max-xl:px-5 flex-1">
         {children}
     </main>
     <Footer/>
