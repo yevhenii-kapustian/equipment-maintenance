@@ -11,8 +11,8 @@ const EquipmentIntro = () => {
       <h1 className="text-6xl font-light text-center max-sm:text-5xl">
         Управління Обладнанням
       </h1>
-<span className="absolute left-0 right-0 bottom-0 mx-auto block h-90 bg-(--color-artichoke) rounded-4xl" />
 
+      <span className="absolute left-0 right-0 bottom-0 mx-auto block h-90 bg-(--color-artichoke) rounded-4xl" />
 
       <div className="mt-10 w-full max-w-5xl rounded-3xl shadow-xl z-1 translate-y-7 max-sm:max-w-[290px]">
         <div className="relative border-10 border-black rounded-3xl overflow-hidden" style={{ transform: `translateY(${offset}px)` }}>
