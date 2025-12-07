@@ -2,12 +2,18 @@
 
 import useParallax from "@/hooks/useParallax";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const EquipmentIntro = () => {
    const offset = useParallax(0.15);
 
   return (
-    <section className="relative w-full flex flex-col items-center px-10 overflow-hidden">
+    <motion.section initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }} 
+                        className="relative w-full flex flex-col items-center px-10 overflow-hidden"
+    >
       <h1 className="text-6xl font-light text-center max-sm:text-5xl">
         Управління Обладнанням
       </h1>
@@ -45,7 +51,7 @@ const EquipmentIntro = () => {
         </div>
       </div>
 
-    </section>
+    </motion.section>
   );
 }
 
