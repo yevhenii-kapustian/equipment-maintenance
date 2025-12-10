@@ -4,11 +4,11 @@ import { createClient } from "@/utils/supabase/server-client";
 
 const EquipmentPage = async () => {
     const supabase = await createClient()
-    const {data: equipment} = await getEquipmentList(supabase)
+    const { data: equipment } = await getEquipmentList(supabase)
 
-    return(
+    return (
         <>
-        <EquipmentSection equipment={equipment ?? []} /> 
+        <EquipmentSection equipment={equipment ?? []} />
         </>
     )
 }
