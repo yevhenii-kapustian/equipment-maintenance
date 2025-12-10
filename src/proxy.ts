@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr/dist/main/createServerClient";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server"
 
-export const middleware = async (request: NextRequest) => {
+export const proxy = async (request: NextRequest) => {
     const supabaseResponse = NextResponse.next({ request })
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
