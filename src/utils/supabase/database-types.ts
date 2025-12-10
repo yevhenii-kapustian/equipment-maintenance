@@ -48,6 +48,7 @@ export type Database = {
       }
       equipment: {
         Row: {
+          category: string | null
           created_at: string
           id: string
           location: string | null
@@ -56,6 +57,7 @@ export type Database = {
           slug: string | null
         }
         Insert: {
+          category?: string | null
           created_at?: string
           id?: string
           location?: string | null
@@ -64,6 +66,7 @@ export type Database = {
           slug?: string | null
         }
         Update: {
+          category?: string | null
           created_at?: string
           id?: string
           location?: string | null
@@ -143,24 +146,24 @@ export type Database = {
       users: {
         Row: {
           created_at: string
-          email: string | null
+          email: string
           id: string
           role: string | null
-          username: string | null
+          username: string
         }
         Insert: {
           created_at?: string
-          email?: string | null
+          email: string
           id?: string
           role?: string | null
-          username?: string | null
+          username: string
         }
         Update: {
           created_at?: string
-          email?: string | null
+          email?: string
           id?: string
           role?: string | null
-          username?: string | null
+          username?: string
         }
         Relationships: []
       }

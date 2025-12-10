@@ -1,6 +1,7 @@
 "use client"
 
 import { User } from "@supabase/supabase-js"
+import { MoveUpRight } from "lucide-react"
 
 type BurgerMenuLinksProps = {
     user: User | null
@@ -35,9 +36,7 @@ export const BurgerMenuLinks = ({ user, closeMenu }: BurgerMenuLinksProps) => (
         )}
 
         <li>
-            <a href="/contact" className="block w-40 text-center py-4 px-7 green-btn animation-btn">
-                Зв'язатися
-            </a>
+            <a href="/contact" className="w-40 py-4 px-7 flex justify-center items-center gap-1 green-btn animation-btn">Зв'язатися <span><MoveUpRight size={13} strokeWidth={3} /></span> </a>
         </li>
     </>
 )

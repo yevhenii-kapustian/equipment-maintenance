@@ -21,6 +21,9 @@
   .gray-btn {
     @apply bg-gray-200 rounded-3xl hover:bg-gray-100
   }
+  .dirty-white-btn {
+    @apply bg-(--color-dirty-white) text-black rounded-3xl hover:opacity-70 cursor-pointer
+  }
 }
 
 * {

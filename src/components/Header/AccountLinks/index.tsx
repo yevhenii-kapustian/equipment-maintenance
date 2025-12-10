@@ -1,5 +1,6 @@
 import NavLinks from "./NavLinks"
 import { User as UserType } from "@supabase/supabase-js"
+import { MoveUpRight } from 'lucide-react';
 
 interface AccountLinksProps {
     user: UserType | null
@@ -19,7 +20,7 @@ const AccountLinks = async ({user}: AccountLinksProps) => {
                     <li><a href="/auth/login" className="py-4 px-7 gray-btn animation-btn">Увійти</a></li>
                 )}
 
-                <li><a href="/contact" className="py-4 px-7 green-btn animation-btn">Зв'язатися</a></li>
+                <li><a href="/contact" className="w-40 py-4 px-7 flex justify-center items-center gap-1 green-btn animation-btn">Зв'язатися <span><MoveUpRight size={13} strokeWidth={3} /></span> </a></li>
             </ul>
         </div>
     )
