@@ -15,7 +15,7 @@ export const SignUp = async (userData: z.infer<typeof signUpSchema>) => {
         password: parsedData.password,
         options: {
             data: { username: parsedData.username },
-            emailRedirectTo: `https://backend-school-app-jcm2.vercel.app/auth/login`,
+            emailRedirectTo: `https://equipment-maintenance-chi.vercel.app//auth/login`,
         },
     }
     )
