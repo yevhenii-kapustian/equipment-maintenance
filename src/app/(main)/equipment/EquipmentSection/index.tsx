@@ -21,8 +21,8 @@ const EquipmentSection = ({equipment}: {equipment: EquipmentListType}) => {
                 <p className="p-2 w-30 text-center font-semibold dirty-white-btn animation-btn">Всі</p>
             </div>
             <div className="mt-10 pt-10 border-t border-[#e0e0e0]">
-                <div className="px-20 grid grid-cols-3 justify-items-center gap-5 items-center max-sm:px-5">
-                    <p className="text-center">Найменування обладнання</p>
+                <div className="px-20 grid grid-cols-3 justify-items-center gap-5 items-center text-center max-sm:px-5">
+                    <p>Найменування обладнання</p>
                     <p>Тип</p>
                     <p>Область</p>
                 </div>
