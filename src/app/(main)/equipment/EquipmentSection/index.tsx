@@ -5,8 +5,14 @@ import Equipments from "./Equipments";
 import Pagination from "@/components/Pagination";
 import { useState } from "react";
 import EquipmentFilter from "./EquipmentFilter";
+import Link from "next/link";
 
-const EquipmentSection = ({ equipment }: { equipment: EquipmentListType }) => {
+type EquipmentSectionProps = {
+    equipment: EquipmentListType,
+    isAdmin: boolean
+}
+
+const EquipmentSection = ({ equipment, isAdmin }: EquipmentSectionProps) => {
     const POSTS_PER_PAGE = 5
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -31,11 +37,14 @@ const EquipmentSection = ({ equipment }: { equipment: EquipmentListType }) => {
         <section>
             <div className="flex justify-between items-center gap-5 max-sm:flex-col max-sm:items-start">
                 <h1 className="text-5xl font-semibold">Обладнання</h1>
-                <EquipmentFilter 
-                    categories={equipment}
-                    onCategorySelect={handleCategoryChange}
-                    selectedCategory={selectedCategory}
-                />
+                <div className="flex items-center gap-5">
+                    {isAdmin && <Link href="/equipment/create">Створити нове</Link> }
+                    <EquipmentFilter 
+                        categories={equipment}
+                        onCategorySelect={handleCategoryChange}
+                        selectedCategory={selectedCategory}
+                    />
+                </div>
             </div>
 
             <div className="mt-10 pt-10 border-t border-[#e0e0e0]">
