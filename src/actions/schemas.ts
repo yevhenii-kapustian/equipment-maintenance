@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const adminSchema = z.object({
+    role: z.string().nullable()
+})
+
 export const logInSchema = z.object({
     email: z.string("Введіть свою електронну адресу").trim().email("Недійсна адреса електронної пошти"),
     password: z.string().min(6, "Пароль має містити щонайменше 6 символів")

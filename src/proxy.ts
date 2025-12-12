@@ -21,7 +21,8 @@ export const proxy = async (request: NextRequest) => {
     )
 
     const adminProtectedRoutes = [
-        /^\/equipment\/create$/
+        /^\/equipment\/create$/,
+        /^\/account\/admin$/
     ]
 
     const protectedRoutes = [

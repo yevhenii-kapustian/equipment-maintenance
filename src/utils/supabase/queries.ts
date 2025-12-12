@@ -23,4 +23,12 @@ export const getUserRole = async (id: string) => {
                             .single()
 }
 
+export const getUsers = async () => {
+    const supabase = createClient()
+    return await supabase.from("users")
+                        .select("*")
+                        .order("created_at", { ascending: false })
+}
+
 export type EquipmentListType = QueryData<ReturnType<typeof getEquipmentList>>
+export type getUsersType = QueryData<ReturnType<typeof getUsers>>
