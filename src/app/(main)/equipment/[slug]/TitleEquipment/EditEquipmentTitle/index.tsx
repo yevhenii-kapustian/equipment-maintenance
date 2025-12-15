@@ -53,16 +53,16 @@ const EditEquipmentTitle = ({ equipmentId, getEquipments }: { equipmentId: strin
                 <div onClick={() => setIsOpen(false)} className="fixed inset-0 flex justify-center items-center bg-[#0000002f] z-40">
                     <div onClick={(e) => e.stopPropagation()} className="w-120 p-5 flex flex-col gap-5 bg-white rounded-xl shadow-xl">
                         <div className="flex justify-between items-center">
-                            <p className="font-bold">Редагувати</p>
+                            <p className="text-xl font-bold">Редагувати</p>
                             <button onClick={() => setIsOpen(false)} className="cursor-pointer">
-                                <X size={15} />
+                                <X size={18} />
                             </button>
                         </div>
                         <div>
                             <input
                                 value={newTitle}
                                 onChange={(e) => setNewTitle(e.target.value)}
-                                className="w-full p-2 focus:outline-none border border-[#e0e0e0] rounded bg-white"
+                                className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white"
                                 type="text"
                                 placeholder="Напишіть назву"
                             />

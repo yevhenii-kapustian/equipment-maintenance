@@ -1,0 +1,114 @@
+'use client'
+
+import { useMutation } from "@tanstack/react-query"
+import { AddDetails } from "@/actions/EquipmentPosts/add-details"
+import { useState } from "react"
+import ErrorMessage from "@/components/ErrorMessage"
+import { toast } from "sonner"
+import { addEquipmentDetailsSchema } from "@/actions/schemas"
+import { useQueryClient } from "@tanstack/react-query"
+import { X } from "lucide-react"
+
+type CreateEquipmentDetailsProps = {
+    equipmentId: string,
+    slug: string,
+    setIsOpenCreate: (value: boolean) => void
+}
+
+type FormErrors = {
+  schedule?: string
+  plan?: string
+  fact?: string,
+}
+
+const CreateEquipmentDetails = ({equipmentId, slug, setIsOpenCreate}: CreateEquipmentDetailsProps) => {
+    const [schedule, setSchedule] = useState<string>("")
+    const [plan, setPlan] = useState<string>("")
+    const [fact, setFact] = useState<string>("")
+    const [formErrors, setFormErrors] = useState<FormErrors>({})
+
+    const queryClient = useQueryClient()
+
+    const { mutate } = useMutation({
+        mutationFn: AddDetails,
+        onSuccess: (newDetails) => {
+            toast.success("Інформація успішно збережена")
+            queryClient.setQueryData(
+                ["equipmentDetail", equipmentId],
+                newDetails
+            )
+
+            setSchedule("")
+            setPlan("")
+            setFact("")
+        }
+    })
+
+    const handleSave = () => {
+        const result = addEquipmentDetailsSchema.safeParse({
+            equipmentId,
+            schedule,
+            plan,
+            fact: fact || undefined,
+            slug
+        })
+
+        if (!result.success) {
+            const fieldErrors: FormErrors = {}
+
+            result.error.issues.forEach(err => {
+                const field = err.path[0] as keyof FormErrors
+                fieldErrors[field] = err.message
+            })
+
+            setFormErrors(fieldErrors)
+            return
+        }
+
+        setFormErrors({})
+        mutate(result.data)
+    }
+
+    return (
+        <div onClick={() => setIsOpenCreate(false)} className="w-full h-full absolute top-0 left-0 flex justify-center items-center bg-[#0000002f]">
+            <div onClick={(e) => e.stopPropagation()} className="w-120 p-5 border border-[#e0e0e0] bg-white rounded-2xl shadow-xl">
+                <div className="flex justify-between">
+                    <p className="text-xl font-bold">Планування</p>
+                    <button onClick={() => setIsOpenCreate(false)} className="cursor-pointer"> <X size={18} /> </button>
+                </div>
+                <div className="mt-7 pt-7 flex items-center gap-2 border-t border-[#e0e0e0]">
+                    <p>Дата обслуговування:</p>
+                    <input value={schedule} onChange={(e) => setSchedule(e.target.value)} type="date" />
+                </div>
+                {formErrors.schedule && (
+                    <ErrorMessage message={formErrors.schedule} />
+                )}
+
+                <div className="mt-7 flex flex-col gap-7">
+                    <input value={plan}
+                        onChange={(e) => setPlan(e.target.value)}
+                        className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white"
+                        type="text"
+                        placeholder="План"
+                    />
+                    {formErrors.plan && (
+                        <ErrorMessage message={formErrors.plan} />
+                    )}
+
+                    <input value={fact}
+                        onChange={(e) => setFact(e.target.value)}
+                        className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white"
+                        type="text"
+                        placeholder="Факт"
+                    />
+                    {formErrors.fact && (
+                        <ErrorMessage message={formErrors.fact} />
+                    )}
+                </div>
+                <button onClick={handleSave} className="mt-7 p-2 w-full animation-btn gray-btn cursor-pointer">Зберегти</button>
+            </div>
+        </div>
+    )
+}
+
+export default CreateEquipmentDetails

@@ -15,6 +15,14 @@ export const getSingleEquipment = async (slug: string) => {
                             .single()
 }
 
+export const getSingleEquipmentDetails = async ( equipmentId: string ) => {
+    const supabase = createClient()
+    return await supabase.from("equipment_details")
+                            .select("*")
+                            .eq("equipment_id", equipmentId)
+                            .single()
+}
+
 export const getUserRole = async (id: string) => {
     const supabase = createClient()
     return await supabase.from("users")
@@ -32,3 +40,4 @@ export const getUsers = async () => {
 
 export type EquipmentListType = QueryData<ReturnType<typeof getEquipmentList>>
 export type getUsersType = QueryData<ReturnType<typeof getUsers>>
+export type getSingleEquipmentDetailsType = QueryData<ReturnType<typeof getSingleEquipmentDetails>>

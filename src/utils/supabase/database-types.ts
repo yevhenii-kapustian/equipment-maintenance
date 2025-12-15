@@ -55,6 +55,7 @@ export type Database = {
           months: number | null
           name: string | null
           slug: string | null
+          user_id: string
         }
         Insert: {
           category?: string | null
@@ -64,6 +65,7 @@ export type Database = {
           months?: number | null
           name?: string | null
           slug?: string | null
+          user_id: string
         }
         Update: {
           category?: string | null
@@ -73,8 +75,17 @@ export type Database = {
           months?: number | null
           name?: string | null
           slug?: string | null
+          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "equipment_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       equipment_details: {
         Row: {
@@ -83,6 +94,7 @@ export type Database = {
           fact: string | null
           id: number
           plan: string | null
+          schedule: string | null
         }
         Insert: {
           created_at?: string
@@ -90,6 +102,7 @@ export type Database = {
           fact?: string | null
           id?: number
           plan?: string | null
+          schedule?: string | null
         }
         Update: {
           created_at?: string
@@ -97,45 +110,11 @@ export type Database = {
           fact?: string | null
           id?: number
           plan?: string | null
+          schedule?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "equipment_details_equipment_id_fkey"
-            columns: ["equipment_id"]
-            isOneToOne: false
-            referencedRelation: "equipment"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      schedules: {
-        Row: {
-          created_at: string
-          equipment_id: string | null
-          id: number
-          month: number | null
-          planned_job: string | null
-          week: number | null
-        }
-        Insert: {
-          created_at?: string
-          equipment_id?: string | null
-          id?: number
-          month?: number | null
-          planned_job?: string | null
-          week?: number | null
-        }
-        Update: {
-          created_at?: string
-          equipment_id?: string | null
-          id?: number
-          month?: number | null
-          planned_job?: string | null
-          week?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "schedules_equipment_id_fkey"
             columns: ["equipment_id"]
             isOneToOne: false
             referencedRelation: "equipment"

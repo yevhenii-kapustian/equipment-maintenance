@@ -1,6 +1,10 @@
 import { createClient } from "@/utils/supabase/server-client"
-import { getSingleEquipment, getEquipmentList, EquipmentListType } from "@/utils/supabase/queries"
+import { 
+        getSingleEquipment, getEquipmentList,
+        EquipmentListType
+        } from "@/utils/supabase/queries"
 import TitleEquipment from "./TitleEquipment"
+import EquipmentDetails from "./EquipmentDetails"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { isUserAdmin } from "@/utils/access"
@@ -25,7 +29,14 @@ const SingleEquipment = async ( {params}: {params: { slug: string }} ) => {
                             category={singlePost.category as string}
                             equipmentId={singlePost.id}
                             getEquipments={posts as EquipmentListType}
-                            isAdmin={await isUserAdmin(supabase)} />
+                            isAdmin={await isUserAdmin(supabase)} 
+            />
+            <span className="w-full my-5 block border-t border-[#e0e0e0]" />
+            <div className="flex justify-end">
+                <EquipmentDetails equipmentId={singlePost.id}
+                                    singlePostId={singlePost.id}
+                                    slug={slug} />
+            </div>
 
         </section>
     )

@@ -22,3 +22,18 @@ export const editEquipmentTitleSchema = z.object({
             .max(100, "Назва занадто довга"),
     category: z.string().min(1).optional()
 })
+
+export const addEquipmentDetailsSchema = z.object({
+    equipmentId: z.string().uuid(),
+    schedule: z.string().min(1, "Розклад обов'язковий"),
+    plan: z.string().min(1, "План обов'язковий"),
+    fact: z.string().min(1).optional(),
+    slug: z.string()
+})
+
+export const editEquipmentDetailsSchema = z.object({
+    equipmentId: z.string().uuid(),
+    schedule: z.string().min(1, "Розклад обов'язковий"),
+    plan: z.string().min(1, "План обов'язковий"),
+    fact: z.string().optional(),
+})
