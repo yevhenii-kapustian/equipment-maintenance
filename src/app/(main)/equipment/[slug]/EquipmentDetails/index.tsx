@@ -20,32 +20,61 @@ const EquipmentDetails = ({singlePostId, equipmentId, slug}: EquipmentDetailsPro
 
     return(
         <div className="w-[30%]">
-            <div className="flex justify-between items-center">
-                <h3 className="text-2xl font-semibold">Планування</h3>
-                {singleEquipmentDetail?.schedule && (
-                    <div className="p-3 bg-white border-[#e0e0e0] border rounded-xl shadow cursor-pointer"
-                        onClick={() => setIsOpenEdit(true)}
-                    >
-                        <Pencil strokeWidth={2} size={12} className="opacity-80" />
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                <div className="pb-3 flex items-center justify-between border-b border-[#e0e0e0]">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                        Планування
+                    </h3>
+
+                    {singleEquipmentDetail?.schedule && (
+                        <button onClick={() => setIsOpenEdit(true)}
+                                className="flex h-9 w-9 items-center justify-center
+                                            rounded-xl border border-gray-200 bg-gray-50
+                                            transition hover:bg-gray-100 cursor-pointer"
+                        >
+                            <Pencil size={14} className="text-gray-600" />
+                        </button>
+                    )}
+                </div>
+
+                {singleEquipmentDetail?.schedule ? (
+                    <div className="mt-4 space-y-3 text-sm text-gray-700">
+                        <p><span className="font-medium text-gray-900">Дата: </span>
+                            {singleEquipmentDetail.schedule}
+                        </p>
+
+                        <div className="space-y-2">
+                            <p><span className="font-medium text-gray-900">План: </span>
+                                {singleEquipmentDetail.plan}
+                            </p>
+
+                            <p><span className="font-medium text-gray-900">Факт: </span>
+                                {singleEquipmentDetail.fact || '—'}
+                            </p>
+                        </div>
                     </div>
-                )}
+                ) : (
+                    <div className="mt-4 rounded-xl border-2 border-dashed border-gray-300
+                              bg-gray-50 p-4 text-center text-sm text-gray-600"
+                    >
+                        <p>Планування ще не існує</p>
+
+                        <button onClick={() => setIsOpenCreate(true)}
+                                className="w-full mt-3 py-2 black-btn animation-btn cursor-pointer"
+                        >
+                            Додати план
+                        </button>
+                    </div>
+                    )}
             </div>
-            {singleEquipmentDetail?.schedule ? (
-                <>
-                <p className="mt-3"><span className="font-semibold">Дата:</span> {singleEquipmentDetail.schedule}</p>
-                <div className="mt-2">
-                    <h4><span className="font-semibold">План:</span> {singleEquipmentDetail.plan}</h4>
-                    <h4 className="mt-2"><span className="font-semibold">Факт:</span> {singleEquipmentDetail.fact || "-"}</h4>
-                </div>
-                </>
-            ) : (
-                <div className="mt-5 p-3 border border-dashed border-[#919191] text-center rounded-xl">
-                    <p>Планування ще не існує</p>
-                    <button onClick={() => setIsOpenCreate(true)} className="animation-btn gray-btn mt-3 w-full p-2 cursor-pointer">Додати план</button>
-                </div>
+
+            {isOpenCreate && !singleEquipmentDetail?.schedule && (
+                <CreateEquipmentDetails setIsOpenCreate={setIsOpenCreate} slug={slug} equipmentId={equipmentId} />
             )}
-            {isOpenCreate && !singleEquipmentDetail?.schedule && <CreateEquipmentDetails setIsOpenCreate={setIsOpenCreate} slug={slug} equipmentId={equipmentId} />}
-            {isOpenEdit && <EditEquipmentDetails setIsOpenEdit={setIsOpenEdit} equipmentId={equipmentId} />}
+
+            {isOpenEdit && (
+                <EditEquipmentDetails setIsOpenEdit={setIsOpenEdit} equipmentId={equipmentId} />
+            )}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { X } from "lucide-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { EditDetails } from "@/actions/EquipmentPosts/edit-details"
+import { EditDetails } from "@/actions/EquipmentPostsItem/edit-details"
 import { toast } from "sonner"
 import ErrorMessage from "@/components/ErrorMessage"
 import { useEffect, useState } from "react"
@@ -69,7 +69,7 @@ const EditEquipmentDetails = ({setIsOpenEdit, equipmentId}: EditEquipmentDetails
     
             setFormErrors({})
             mutate(result.data)
-        }
+    }
 
     return (
         <div onClick={() => setIsOpenEdit(false)} className="w-full h-full absolute top-0 left-0 flex justify-center items-center bg-[#0000002f]">
@@ -78,9 +78,9 @@ const EditEquipmentDetails = ({setIsOpenEdit, equipmentId}: EditEquipmentDetails
                     <p className="text-xl font-bold">Планування</p>
                     <button onClick={() => setIsOpenEdit(false)} className="cursor-pointer"> <X size={18} /> </button>
                 </div>
-                <div className="mt-7 pt-7 flex items-center gap-2 border-t border-[#e0e0e0]">
-                    <p>Дата обслуговування:</p>
-                    <input value={editedSchedule} onChange={(e) => setEditedSchedule(e.target.value)} type="date" />
+                <div className="mt-7 pt-7 flex items-center border-t border-[#e0e0e0]">
+                    <p className="px-2">Дата обслуговування:</p>
+                    <input className="underline cursor-pointer" value={editedSchedule} onChange={(e) => setEditedSchedule(e.target.value)} type="date" />
                 </div>
                 {formErrors.schedule && (
                     <ErrorMessage message={formErrors.schedule} />
@@ -107,7 +107,7 @@ const EditEquipmentDetails = ({setIsOpenEdit, equipmentId}: EditEquipmentDetails
                         <ErrorMessage message={formErrors.fact} />
                     )}
                 </div>
-                <button onClick={handleSave} className="mt-7 p-2 w-full animation-btn gray-btn cursor-pointer">Зберегти</button>
+                <button onClick={handleSave} className="mt-7 p-2 w-full animation-btn black-btn cursor-pointer">Зберегти</button>
             </div>
         </div>
     )

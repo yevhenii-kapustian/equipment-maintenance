@@ -37,3 +37,10 @@ export const editEquipmentDetailsSchema = z.object({
     plan: z.string().min(1, "План обов'язковий"),
     fact: z.string().optional(),
 })
+
+export const addWorkLogsSchema = z.object({
+    files: z.array(z.instanceof(File)).min(1, { message: 'Виберіть принаймні один файл' }),
+    description: z.string().optional(),
+})
+
+export type AddWorkLogsSchema = z.infer<typeof addWorkLogsSchema>

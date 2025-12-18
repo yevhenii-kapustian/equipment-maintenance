@@ -2,7 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
-import { EditTitle } from "@/actions/EquipmentPosts/edit-title"
+import { EditTitle } from "@/actions/EquipmentPostsItem/edit-title"
 import { useRouter } from "next/navigation"
 import { X, ArrowDown } from "lucide-react"
 import ErrorMessage from "@/components/ErrorMessage"
@@ -43,7 +43,7 @@ const EditEquipmentTitle = ({ equipmentId, getEquipments }: { equipmentId: strin
     return (
         <>
             <button
-                className="py-2 px-4 border border-[#cccccc] rounded-xl text-sm text-[#333333] font-semibold shadow-md cursor-pointer animation-btn hover:opacity-80"
+                className="py-2 px-4 gray-btn animation-btn cursor-pointer"
                 onClick={() => setIsOpen(true)}
             >
                 Редагувати
@@ -95,7 +95,7 @@ const EditEquipmentTitle = ({ equipmentId, getEquipments }: { equipmentId: strin
                             </button>
                             <button onClick={() => mutate({ equipmentId, name: newTitle, category: newCategory || undefined })}
                                     disabled={isPending}
-                                    className="py-2 px-4 animation-btn green-btn cursor-pointer disabled:opacity-50"
+                                    className="py-2 px-4 animation-btn black-btn cursor-pointer disabled:opacity-50"
                             >
                                 {isPending ? "Збереження..." : "Зберегти"}
                             </button>

@@ -38,6 +38,25 @@ export const getUsers = async () => {
                         .order("created_at", { ascending: false })
 }
 
+export const getWorkLogs = async (equipmentId: string) => {
+    const supabase = createClient()
+    return await supabase.from("work_logs")
+                        .select(`
+                            id,
+                            description,
+                            image_urls,
+                            created_at,
+                            user_id,
+                            users (
+                                id,
+                                username
+                            )
+                        `)
+                        .eq("equipment_id", equipmentId)
+
+}
+
 export type EquipmentListType = QueryData<ReturnType<typeof getEquipmentList>>
 export type getUsersType = QueryData<ReturnType<typeof getUsers>>
 export type getSingleEquipmentDetailsType = QueryData<ReturnType<typeof getSingleEquipmentDetails>>
+export type GetWorkLogsType = QueryData<ReturnType<typeof getWorkLogs>>

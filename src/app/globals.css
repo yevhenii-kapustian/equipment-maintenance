@@ -15,14 +15,19 @@
   }
 
   .green-btn {
-    @apply bg-(--color-army-green) text-white rounded-2xl hover:bg-(--color-artichoke)
+    @apply bg-(--color-army-green) text-white rounded-xl hover:bg-(--color-artichoke)
   }
 
   .gray-btn {
-    @apply bg-gray-200 rounded-2xl hover:bg-gray-100
+    @apply bg-gray-200 rounded-xl hover:bg-gray-100
   }
+
   .dirty-white-btn {
-    @apply bg-(--color-dirty-white) text-black rounded-3xl hover:opacity-70 cursor-pointer
+    @apply bg-(--color-dirty-white) text-black rounded-xl hover:opacity-70 cursor-pointer
+  }
+
+  .black-btn {
+    @apply rounded-xl bg-black font-medium text-white hover:bg-gray-900
   }
 }
 

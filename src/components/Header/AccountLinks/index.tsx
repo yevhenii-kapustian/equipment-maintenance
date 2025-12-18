@@ -17,10 +17,10 @@ const AccountLinks = async ({user}: AccountLinksProps) => {
                 {user ? (
                     <li><a href="/account">Мій акаунт</a></li>
                 ) : (
-                    <li><a href="/auth/login" className="py-4 px-7 gray-btn animation-btn">Увійти</a></li>
+                    <li><a href="/auth/login" className="py-3 px-4 gray-btn animation-btn">Увійти</a></li>
                 )}
 
-                <li><a href="/contact" className="w-40 py-4 px-7 flex justify-center items-center gap-1 green-btn animation-btn">Зв'язатися <span><MoveUpRight size={13} strokeWidth={3} /></span> </a></li>
+                <li><a href="/contact" className=" py-3 px-4 flex justify-center items-center gap-1 green-btn animation-btn">Зв'язатися <span><MoveUpRight size={13} strokeWidth={3} /></span> </a></li>
             </ul>
         </div>
     )

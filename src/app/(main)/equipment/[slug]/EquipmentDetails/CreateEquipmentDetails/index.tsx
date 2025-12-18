@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation } from "@tanstack/react-query"
-import { AddDetails } from "@/actions/EquipmentPosts/add-details"
+import { AddDetails } from "@/actions/EquipmentPostsItem/add-details"
 import { useState } from "react"
 import ErrorMessage from "@/components/ErrorMessage"
 import { toast } from "sonner"
@@ -76,9 +76,9 @@ const CreateEquipmentDetails = ({equipmentId, slug, setIsOpenCreate}: CreateEqui
                     <p className="text-xl font-bold">Планування</p>
                     <button onClick={() => setIsOpenCreate(false)} className="cursor-pointer"> <X size={18} /> </button>
                 </div>
-                <div className="mt-7 pt-7 flex items-center gap-2 border-t border-[#e0e0e0]">
-                    <p>Дата обслуговування:</p>
-                    <input value={schedule} onChange={(e) => setSchedule(e.target.value)} type="date" />
+                <div className="mt-7 pt-7 flex items-center border-t border-[#e0e0e0]">
+                    <p className="px-2">Дата обслуговування:</p>
+                    <input className="underline cursor-pointer" value={schedule} onChange={(e) => setSchedule(e.target.value)} type="date" />
                 </div>
                 {formErrors.schedule && (
                     <ErrorMessage message={formErrors.schedule} />
@@ -105,7 +105,7 @@ const CreateEquipmentDetails = ({equipmentId, slug, setIsOpenCreate}: CreateEqui
                         <ErrorMessage message={formErrors.fact} />
                     )}
                 </div>
-                <button onClick={handleSave} className="mt-7 p-2 w-full animation-btn gray-btn cursor-pointer">Зберегти</button>
+                <button onClick={handleSave} className="mt-7 p-2 w-full animation-btn black-btn cursor-pointer">Зберегти</button>
             </div>
         </div>
     )

@@ -38,7 +38,7 @@ const EquipmentSection = ({ equipment, isAdmin }: EquipmentSectionProps) => {
             <div className="flex justify-between items-center gap-5 max-sm:flex-col max-sm:items-start">
                 <h1 className="text-5xl font-semibold">Обладнання</h1>
                 <div className="flex items-center gap-5">
-                    {isAdmin && <Link href="/equipment/create">Створити нове</Link> }
+                    {isAdmin && <Link href="/equipment/create" className="py-2 px-4 gray-btn animation-bt font-semibold">Створити нове</Link> }
                     <EquipmentFilter 
                         categories={equipment}
                         onCategorySelect={handleCategoryChange}
