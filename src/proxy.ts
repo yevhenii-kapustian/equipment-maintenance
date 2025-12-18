@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr/dist/main/createServerClient";
 import { NextRequest, NextResponse } from "next/server"
-import { isUserAdmin } from "./utils/access";
+import { isUserAdmin, isUserEmployee } from "./utils/access";
 
 export const proxy = async (request: NextRequest) => {
     const supabaseResponse = NextResponse.next({ request })
@@ -20,9 +20,17 @@ export const proxy = async (request: NextRequest) => {
         }
     )
 
+    const isAdmin = await isUserAdmin(supabase)
+    const isEmployee = await isUserEmployee(supabase)
+
     const adminProtectedRoutes = [
         /^\/equipment\/create$/,
-        /^\/account\/admin$/
+        /^\/account\/admin$/,
+    ]
+
+    const employeeProtectedRoutes = [
+        /^\/equipment(?:\/.*)?$/,
+        /^\/service(?:\/.*)?$/,
     ]
 
     const protectedRoutes = [
@@ -32,14 +40,15 @@ export const proxy = async (request: NextRequest) => {
     const pathname = request.nextUrl.pathname
     const { data: {user} } = await supabase.auth.getUser()
 
-    if (adminProtectedRoutes.some(routes => routes.test(pathname))) {
-        const isAdmin = await isUserAdmin(supabase)
-        
-        if (!isAdmin) {
-            const url = request.nextUrl.clone()
-            url.pathname = "/"
-            return NextResponse.redirect(url)
-        }
+    const isAdminRoute = adminProtectedRoutes.some(r => r.test(pathname))
+    const isEmployeeRoute = employeeProtectedRoutes.some(r => r.test(pathname))
+
+    if (isAdminRoute && !isAdmin) {
+        return NextResponse.redirect(new URL("/", request.url))
+    }
+
+    if (isEmployeeRoute && !isEmployee && !isAdmin) {
+        return NextResponse.redirect(new URL("/", request.url))
     }
 
     if (user && protectedRoutes.some(routes => routes.test(pathname))) {
@@ -49,4 +58,5 @@ export const proxy = async (request: NextRequest) => {
         return NextResponse.redirect(newUrl)
     }
 
+    return supabaseResponse
 }

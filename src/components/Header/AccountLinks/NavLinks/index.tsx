@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from "react"
+import Link from "next/link";
 
-const NavLinks = () => {
+const NavLinks = ({isAdmin, isEmployee}: {isAdmin: boolean, isEmployee: boolean}) => {
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -20,9 +21,13 @@ const NavLinks = () => {
         <>
         {!isSticky && (
             <ul className="flex gap-20 items-center max-xl:gap-10">
-                <li><a href="/equipment">Обладнання</a></li>
-                <li><a href="/service">Обслуговування</a></li>
-                <li><a href="/team">Команда</a></li>
+                {(isAdmin || isEmployee) && (
+                    <>
+                    <li><Link href="/equipment">Обладнання</Link></li>
+                    <li><Link href="/service">Обслуговування</Link></li>
+                    </>
+                )}
+                <li><Link href="/team">Команда</Link></li>
             </ul>
         )}
 
@@ -35,9 +40,13 @@ const NavLinks = () => {
                 ${isSticky ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'}
             `}
         >
-            <li><a href="/equipment">Обладнання</a></li>
-            <li><a href="/service">Обслуговування</a></li>
-            <li><a href="/team">Команда</a></li>
+            {(isAdmin || isEmployee) && (
+                <>
+                <li><Link href="/equipment">Обладнання</Link></li>
+                <li><Link href="/service">Обслуговування</Link></li>
+                </>
+            )}
+            <li><Link href="/team">Команда</Link></li>
         </ul>
         </>
     )
