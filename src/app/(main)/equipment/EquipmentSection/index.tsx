@@ -54,9 +54,9 @@ const EquipmentSection = ({ equipment, isAdmin }: EquipmentSectionProps) => {
                     <p>Область</p>
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-10 relative">
                     {currentPosts.length > 0 ? (
-                        <Equipments equipments={currentPosts} />
+                        <Equipments isAdmin={isAdmin} equipments={currentPosts} />
                     ) : (
                         <p className="mt-10 text-center text-gray-500">
                             {filteredEquipments.length === 0 
