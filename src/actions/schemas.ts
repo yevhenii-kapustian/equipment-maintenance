@@ -15,6 +15,14 @@ export const signUpSchema = z.object({
     password: z.string().min(6, "Пароль має містити щонайменше 6 символів")
 })
 
+export const addNewEquipmentSchema = z.object({
+    name: z.string().min(1, "Назва обов'язкова"),
+    location: z.string().min(1, "Місцезнаходження обов'язкове"),
+    category: z.string().min(1, "Категорія обов'язкова"),
+    slug: z.string().min(1),
+    userId: z.string().uuid(),
+})
+
 export const editEquipmentTitleSchema = z.object({
     equipmentId: z.string().uuid(),
     name: z.string()
@@ -44,3 +52,4 @@ export const addWorkLogsSchema = z.object({
 })
 
 export type AddWorkLogsSchema = z.infer<typeof addWorkLogsSchema>
+export type AddNewEquipmentInput = z.infer<typeof addNewEquipmentSchema>
