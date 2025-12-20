@@ -52,7 +52,6 @@ export type Database = {
           created_at: string
           id: string
           location: string | null
-          months: number | null
           name: string | null
           slug: string | null
           user_id: string
@@ -62,7 +61,6 @@ export type Database = {
           created_at?: string
           id?: string
           location?: string | null
-          months?: number | null
           name?: string | null
           slug?: string | null
           user_id: string
@@ -72,7 +70,6 @@ export type Database = {
           created_at?: string
           id?: string
           location?: string | null
-          months?: number | null
           name?: string | null
           slug?: string | null
           user_id?: string
@@ -125,6 +122,7 @@ export type Database = {
       users: {
         Row: {
           created_at: string
+          deleted_at: string | null
           email: string
           id: string
           role: string | null
@@ -132,6 +130,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           email: string
           id?: string
           role?: string | null
@@ -139,6 +138,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           email?: string
           id?: string
           role?: string | null
@@ -193,7 +193,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      delete_old_equipment: { Args: never; Returns: undefined }
+      equipment_changes_last_30_days: {
+        Args: never
+        Returns: {
+          added: number
+          removed: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

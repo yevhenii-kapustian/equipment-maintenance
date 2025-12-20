@@ -49,7 +49,7 @@ const WorkLogs = ({ equipmentId, workLogs }: { equipmentId: string, workLogs: Ge
                         <AddWorkLogs equipmentId={equipmentId} />
                     </div>
                 ) : (
-                    <div className="flex min-h-[180px] w-full flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-4 text-center">
+                    <div className="flex min-h-[180px] w-full h-full flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-4 text-center">
                         <p className="text-sm font-medium text-gray-600">
                             Завершіть роботу щоб додати запис
                         </p>
