@@ -6,6 +6,7 @@ import ErrorMessage from "@/components/ErrorMessage"
 import { useEffect, useState } from "react"
 import { editEquipmentDetailsSchema } from "@/actions/schemas"
 import { useSingleEquipmentDetail } from "@/hooks/EquipmentDetails/useSingleEquipmentDetail"
+import { equipmentDetailsLevels } from "@/data/equipmentDetailsLevels"
 
 type EditEquipmentDetailsProps = {
     setIsOpenEdit: (value: boolean) => void,
@@ -97,12 +98,12 @@ const EditEquipmentDetails = ({setIsOpenEdit, equipmentId}: EditEquipmentDetails
                         <ErrorMessage message={formErrors.plan} />
                     )}
 
-                    <input value={editedFact}
-                        onChange={(e) => setEditedFact(e.target.value)}
-                        className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white"
-                        type="text"
-                        placeholder="Факт"
-                    />
+                    <select value={editedFact} onChange={(e) => setEditedFact(e.target.value)} className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white">
+                        <option value="" disabled>Select an option</option>
+                        {equipmentDetailsLevels.map((item, index) => (
+                            <option key={index} value={item.level}>{item.level}</option>
+                        ))}
+                    </select>
                     {formErrors.fact && (
                         <ErrorMessage message={formErrors.fact} />
                     )}

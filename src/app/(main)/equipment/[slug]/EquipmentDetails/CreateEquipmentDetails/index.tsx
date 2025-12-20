@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import { addEquipmentDetailsSchema } from "@/actions/schemas"
 import { useQueryClient } from "@tanstack/react-query"
 import { X } from "lucide-react"
+import { equipmentDetailsLevels } from "@/data/equipmentDetailsLevels"
 
 type CreateEquipmentDetailsProps = {
     equipmentId: string,
@@ -95,12 +96,12 @@ const CreateEquipmentDetails = ({equipmentId, slug, setIsOpenCreate}: CreateEqui
                         <ErrorMessage message={formErrors.plan} />
                     )}
 
-                    <input value={fact}
-                        onChange={(e) => setFact(e.target.value)}
-                        className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white"
-                        type="text"
-                        placeholder="Факт"
-                    />
+                    <select value={fact} onChange={(e) => setFact(e.target.value)} className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white">
+                        <option value="" disabled>Select an option</option>
+                        {equipmentDetailsLevels.map((item, index) => (
+                            <option key={index} value={item.level}>{item.level}</option>
+                        ))}
+                    </select>
                     {formErrors.fact && (
                         <ErrorMessage message={formErrors.fact} />
                     )}
