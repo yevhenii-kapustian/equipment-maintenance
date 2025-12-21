@@ -12,7 +12,8 @@ const ExpiredEquipment = () => {
     const fetchOverdue = async () => {
       const supabase = createClient()
       const { data } = await getEquipmentWithDetails(supabase)
-      const count = data?.flatMap(item => item.equipment_details).filter(detail => isDateOverdue(detail.schedule)).length ?? 0
+      const allDetails = data?.flatMap(item => item.equipment_details) ?? []
+      const count = allDetails.filter(detail => isDateOverdue(detail.schedule) && detail.fact !== "виконано").length
 
       setOverdueCount(count)
     }
@@ -22,7 +23,7 @@ const ExpiredEquipment = () => {
 
   if (overdueCount === null) {
     return (
-      <div className="mt-10 rounded-xl border p-5 bg-[#F8F8F8] animate-pulse space-y-3">
+      <div className="rounded-xl border p-5 bg-[#F8F8F8] animate-pulse space-y-3">
         <div className="h-5 w-40 bg-gray-300 rounded" />
         <div className="h-10 w-20 bg-gray-300 rounded" />
       </div>
@@ -30,7 +31,7 @@ const ExpiredEquipment = () => {
   }
 
   return (
-    <div className="mt-10 rounded-xl border border-[#2a005016] shadow-xl p-5 bg-[#F8F8F8] space-y-3">
+    <div className="rounded-xl border border-[#2a005016] shadow-xl p-5 bg-[#F8F8F8] space-y-3">
       <h2 className="text-xl font-semibold">
         Прострочене обслуговування
       </h2>
