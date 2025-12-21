@@ -1,5 +1,5 @@
 export const equipmentDetailsLevels = [
-    {level: "Виконано"},
-    {level: "У процесі"},
-    {level: "Збій"},
+    {level: "виконано"},
+    {level: "у процесі"},
+    {level: "збій"},
 ]

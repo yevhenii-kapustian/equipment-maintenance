@@ -98,7 +98,7 @@ const EditEquipmentDetails = ({setIsOpenEdit, equipmentId}: EditEquipmentDetails
                         <ErrorMessage message={formErrors.plan} />
                     )}
 
-                    <select value={editedFact} onChange={(e) => setEditedFact(e.target.value)} className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white">
+                    <select value={editedFact} onChange={(e) => setEditedFact(e.target.value)} className="w-full p-2 focus:outline-none border-b border-[#e0e0e0] rounded bg-white capitalize">
                         <option value="" disabled>Select an option</option>
                         {equipmentDetailsLevels.map((item, index) => (
                             <option key={index} value={item.level}>{item.level}</option>
