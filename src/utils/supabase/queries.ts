@@ -23,6 +23,21 @@ export const getSingleEquipmentDetails = async ( equipmentId: string ) => {
                             .single()
 }
 
+export const getEquipmentWithDetails = async (supabase: ReturnType<typeof createClient>) => {
+  return await supabase
+    .from("equipment")
+    .select(`
+      id,
+      name,
+      slug,
+      equipment_details (
+        id,
+        schedule,
+        fact
+      )
+    `)
+}
+
 export const getUserRole = async (id: string) => {
     const supabase = createClient()
     return await supabase.from("users")

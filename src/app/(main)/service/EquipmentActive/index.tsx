@@ -27,7 +27,6 @@ const EquipmentActive = () => {
             <div className="mt-10 rounded-xl border p-5 bg-[#F8F8F8] animate-pulse space-y-3">
                 <div className="h-5 w-40 bg-gray-300 rounded" />
                 <div className="h-10 w-20 bg-gray-300 rounded" />
-                <div className="h-4 w-32 bg-gray-300 rounded" />
             </div>
         )
     }

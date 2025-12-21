@@ -26,7 +26,7 @@ const EquipmentFilter = ({ categories, onCategorySelect, selectedCategory }: Equ
     ).map(item => item.category)
 
     return (
-        <div className="relative">
+        <div className="relative z-15">
             <button 
                 className="p-2 px-4 w-fit text-center font-semibold 
                             dirty-white-btn animation-btn cursor-pointer
