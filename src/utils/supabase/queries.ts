@@ -30,10 +30,18 @@ export const getEquipmentWithDetails = async (supabase: ReturnType<typeof create
       id,
       name,
       slug,
+      user_id,
+      location,
+      users (
+        id,
+        username,
+        email
+      ),
       equipment_details (
         id,
         schedule,
-        fact
+        fact,
+        created_at
       )
     `)
 }
@@ -75,3 +83,4 @@ export type EquipmentListType = QueryData<ReturnType<typeof getEquipmentList>>
 export type getUsersType = QueryData<ReturnType<typeof getUsers>>
 export type getSingleEquipmentDetailsType = QueryData<ReturnType<typeof getSingleEquipmentDetails>>
 export type GetWorkLogsType = QueryData<ReturnType<typeof getWorkLogs>>
+export type GetEquipmentWithDetailsType = QueryData<ReturnType<typeof getEquipmentWithDetails>>
