@@ -5,6 +5,7 @@ import EquipmentActive from "./EquipmentActive"
 import ExpiredEquipment from "./ExpiredEquipment"
 import ServiceDone from "./ServiceDone"
 import EquipmentOverview from "./EquipmentOverview"
+import NearestService from "./NearestService"
 
 const ServicePage = async () => {
     const supabase = await createClient()
@@ -20,8 +21,9 @@ const ServicePage = async () => {
                 <ExpiredEquipment />
                 <ServiceDone />
             </div>
-            <div>
+            <div className="flex gap-5">
                 <EquipmentOverview />
+                <NearestService />
             </div>
         </section>
     )
