@@ -8,7 +8,7 @@ const LogOutButton = () => {
     }
 
     return(
-        <button onClick={handleClick}>LogOut</button>
+        <button onClick={handleClick} className="py-2 px-4 font-semibold gray-btn animation-btn">Вийти</button>
     )
 }
 
