@@ -31,25 +31,33 @@ const NearestService = () => {
 
     if (loading) {
         return(
-            <div className="mt-10 w-[30%] min-h-full py-5 px-8 border border-[#00000030] shadow-lg rounded-2xl animate-pulse">
-            <h4 className="h-6 w-48 bg-gray-300 rounded mb-4"></h4>
-            <div className="mt-5 h-80 flex flex-col gap-5 overflow-y-scroll">
-                {Array.from({ length: 4 }).map((_, index) => (
-                    <div key={index} className="pt-5 border-t border-[#e0e0e0]">
-                        <div className="flex justify-between items-center">
-                            <div className="h-4 w-32 bg-gray-300 rounded"></div>
-                            <div className="h-4 w-20 bg-gray-300 rounded"></div>
+            <div className="mt-10 w-[30%] min-h-full py-5 px-8 border border-[#00000030] shadow-lg rounded-2xl max-xl:w-full max-sm:mt-0 animate-pulse">
+                <h4 className="flex items-center gap-2 text-xl font-semibold mb-4">
+                    <div className="h-4 w-4 bg-gray-300 rounded"></div>
+                    <div className="h-5 w-48 bg-gray-300 rounded"></div>
+                </h4>
+
+                <div className="mt-5 h-80 flex-1 overflow-y-scroll flex flex-col gap-5">
+                    {Array.from({ length: 4 }).map((_, index) => (
+                        <div key={index} className="pt-5 border-t border-[#e0e0e0]">
+                            <div className="flex justify-between items-center gap-3">
+                                <div className="h-4 w-32 bg-gray-300 rounded"></div>
+                                <div className="min-w-25 h-5 bg-gray-300 rounded-2xl"></div>
+                            </div>
+
+                            <div className="mt-2 flex flex-col gap-1">
+                                <div className="h-3 w-28 bg-gray-300 rounded"></div>
+                                <div className="h-4 w-20 bg-gray-300 rounded"></div>
+                            </div>
                         </div>
-                        <div className="mt-2 h-4 w-48 bg-gray-300 rounded"></div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
         )
     }
 
     return (
-        <div className="mt-10 w-[30%] min-h-full py-5 px-8 border border-[#00000030] shadow-lg rounded-2xl">
+        <div className="mt-10 w-[30%] min-h-full py-5 px-8 border border-[#00000030] shadow-lg rounded-2xl max-xl:w-full max-sm:mt-0">
             <h4 className="flex items-center gap-2 text-xl font-semibold mb-4">
                 <Clock4 size={15} strokeWidth={3} /> Найближче Обслуговування
             </h4>
@@ -76,9 +84,9 @@ const NearestService = () => {
                     return (
                         <div key={index} className="pt-5 border-t border-[#e0e0e0]">
                             <Link key={item.id} href={`/equipment/${item.slug}`}>
-                                <div className="flex justify-between items-center">
+                                <div className="flex justify-between items-center gap-3">
                                     <p className="font-semibold">{item.name}</p>
-                                    <p className={`w-25 py-1 text-xs text-center font-semibold rounded-2xl ${color}`}> {priority} </p>
+                                    <p className={`min-w-25 py-1 text-xs text-center font-semibold rounded-2xl ${color}`}> {priority} </p>
                                 </div>
                                 <div className="text-sm">
                                     <p className="text-gray-600">Планова перевірка</p>

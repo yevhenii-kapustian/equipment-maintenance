@@ -13,16 +13,17 @@ const ServicePage = async () => {
 
     return (
         <section>
-            <h1 className="text-5xl font-semibold">Обслуговування</h1>
+            <h1 className="text-5xl font-semibold max-sm:text-4xl">Обслуговування</h1>
 
-            <div className="mt-10 pt-10 grid grid-cols-4 border-t border-[#e0e0e0] items-stretch gap-5">
+            <div className="mt-10 pt-10 grid grid-cols-4 border-t border-[#e0e0e0] items-stretch gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
                 <EquipmentChanges equipmentsAmount={data?.length ?? 0} />
                 <EquipmentActive />
                 <ExpiredEquipment />
                 <ServiceDone />
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 max-xl:flex-col max-xl:gap-0">
                 <EquipmentOverview />
+                <span className='my-10 w-full h-1 border-t border-[#e0e0e0] hidden max-sm:block' />
                 <NearestService />
             </div>
         </section>

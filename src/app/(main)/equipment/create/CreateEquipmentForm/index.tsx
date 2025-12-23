@@ -6,6 +6,7 @@ import { addNewEquipmentSchema } from "@/actions/schemas"
 import { addNewEquipmentAction } from "@/actions/EquipmentPostsItem/add-new-equipment"
 import { buildSlug } from "@/utils/slug"
 import ErrorMessage from "@/components/ErrorMessage"
+import Logo from "@/components/Logo"
 
 type FormErrors = {
     name?: string,
@@ -53,14 +54,15 @@ const CreateEquipmentForm = ({ userId }: {userId: string}) => {
     }
 
     return (
-        <div className="w-full flex items-center gap-5">
-            <div className="w-full max-w-1/2">
+        <div className="w-full flex items-center gap-5 max-sm:flex-col">
+            <div className="w-full max-w-1/2 max-sm:max-w-full">
                 <h1 className="mb-6 text-5xl font-semibold">Створення нового обладнання</h1>
                 <p>На цій сторінці ви можете додати нове обладнання до системи, вказавши основну інформацію, місцезнаходження та категорію для подальшого обслуговування й контролю.</p>
             </div>
 
-            <div className="w-full max-w-1/2 mt-10 p-5 flex flex-col border border-[#e0e0e0] rounded-xl">
-                <div>
+            <div className="w-full max-w-1/2 mt-10 p-5 flex flex-col border border-[#e0e0e0] rounded-xl max-sm:max-w-full max-sm:mt-5">
+                <Logo fontSize={35}/>
+                <div className="mt-5">
                     <label htmlFor="name">Назва</label>
                     <input id="name" value={name} 
                             onChange={e => setName(e.target.value)} 

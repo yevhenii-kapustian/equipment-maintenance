@@ -48,33 +48,39 @@ const EquipmentSection = ({ equipment, isAdmin }: EquipmentSectionProps) => {
             </div>
 
             <div className="mt-10 pt-10 border-t border-[#e0e0e0]">
-                <div className="px-20 grid grid-cols-3 justify-items-center gap-5 items-center text-center max-sm:px-5">
-                    <p>Найменування обладнання</p>
-                    <p>Тип</p>
-                    <p>Область</p>
-                </div>
+  <div className="max-sm:overflow-x-auto">
+    <div className="min-w-[600px]">
+      
+      <div className="px-20 grid grid-cols-3 justify-items-center gap-5 items-center text-center max-sm:px-5">
+        <p>Найменування обладнання</p>
+        <p>Тип</p>
+        <p>Область</p>
+      </div>
 
-                <div className="mt-10 relative">
-                    {currentPosts.length > 0 ? (
-                        <Equipments isAdmin={isAdmin} equipments={currentPosts} />
-                    ) : (
-                        <p className="mt-10 text-center text-gray-500">
-                            {filteredEquipments.length === 0 
-                                ? "Обладнання в цій категорії не знайдено"
-                                : "Обладнання не знайдено"
-                            }
-                        </p>
-                    )}
-                </div>
+      <div className="mt-10 relative">
+        {currentPosts.length > 0 ? (
+          <Equipments isAdmin={isAdmin} equipments={currentPosts} />
+        ) : (
+          <p className="mt-10 text-center text-gray-500">
+            {filteredEquipments.length === 0
+              ? "Обладнання в цій категорії не знайдено"
+              : "Обладнання не знайдено"}
+          </p>
+        )}
+      </div>
 
-                {totalPages > 1 && (
-                    <Pagination 
-                        currentPage={displayPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                    />
-                )}
-            </div>
+    </div>
+  </div>
+
+  {totalPages > 1 && (
+    <Pagination
+      currentPage={displayPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+    />
+  )}
+</div>
+
         </section>
     )
 }

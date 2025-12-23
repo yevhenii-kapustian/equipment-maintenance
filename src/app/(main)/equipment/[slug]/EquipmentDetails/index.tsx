@@ -16,10 +16,33 @@ const EquipmentDetails = ({singlePostId, equipmentId, slug}: EquipmentDetailsPro
     const [isOpenCreate, setIsOpenCreate] = useState<boolean>(false)
     const [isOpenEdit, setIsOpenEdit] = useState<boolean>(false)
 
-    const {data: singleEquipmentDetail} = useSingleEquipmentDetail(singlePostId)
+    const {data: singleEquipmentDetail, isLoading} = useSingleEquipmentDetail(singlePostId)
+
+    if (isLoading) {
+        return (
+            <div className="w-[30%] max-lg:w-full animate-pulse">
+                <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+        
+                    <div className="pb-3 flex items-center justify-between border-b border-[#e0e0e0]">
+                        <div className="h-5 w-32 bg-gray-300 rounded"></div>
+                        <div className="h-9 w-9 bg-gray-300 rounded-xl"></div>
+                    </div>
+
+                    <div className="mt-4 space-y-3">
+                        <div className="h-4 w-40 bg-gray-300 rounded"></div>
+
+                        <div className="space-y-2">
+                            <div className="h-4 w-full bg-gray-300 rounded"></div>
+                            <div className="h-4 w-3/4 bg-gray-300 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return(
-        <div className="w-[30%]">
+        <div className="w-[30%] max-lg:w-full">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
                 <div className="pb-3 flex items-center justify-between border-b border-[#e0e0e0]">
                     <h3 className="text-lg font-semibold text-gray-900">

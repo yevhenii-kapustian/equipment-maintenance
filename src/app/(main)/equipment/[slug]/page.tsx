@@ -35,7 +35,7 @@ const SingleEquipment = async ( {params}: {params: { slug: string }} ) => {
                             isAdmin={await isUserAdmin(supabase)} 
             />
             <span className="w-full my-5 block border-t border-[#e0e0e0]" />
-            <div className="flex justify-between gap-10">
+            <div className="flex justify-between gap-10 max-lg:flex-col-reverse max-sm:gap-5">
                 <WorkLogs workLogs={workLogs || []} equipmentId={singlePost.id} authUser={user?.id as string} />
                 <EquipmentDetails equipmentId={singlePost.id}
                                     singlePostId={singlePost.id}

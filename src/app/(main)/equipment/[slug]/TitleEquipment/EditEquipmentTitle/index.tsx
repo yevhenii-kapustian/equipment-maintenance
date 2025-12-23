@@ -43,7 +43,7 @@ const EditEquipmentTitle = ({ equipmentId, getEquipments }: { equipmentId: strin
     return (
         <>
             <button
-                className="py-2 px-4 gray-btn animation-btn cursor-pointer"
+                className="ml-3 py-2 px-4 text-sm gray-btn animation-btn cursor-pointer max-sm:h-fit"
                 onClick={() => setIsOpen(true)}
             >
                 Редагувати

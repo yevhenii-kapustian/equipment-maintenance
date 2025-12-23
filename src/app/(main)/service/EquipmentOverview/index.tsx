@@ -27,24 +27,24 @@ const EquipmentOverview = () => {
 
     if (loading) {
         return (
-            <div className="mt-10 w-[70%] animate-pulse">
-                <div className="flex justify-between items-center">
-                    <div className="h-7 w-60 bg-gray-300 rounded mb-5" />
-                    <div className="h-7 w-30 bg-gray-300 rounded mb-5" />
+            <div className="mt-10 w-[70%] max-xl:w-full max-sm:mt-15 animate-pulse">
+                <div className="flex justify-between items-center gap-3">
+                    <div className="h-7 w-56 bg-gray-300 rounded"></div>
+                    <div className="h-10 w-32 bg-gray-300 rounded-xl max-sm:w-1/2"></div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5">
+                <div className="mt-5 grid grid-cols-2 gap-5 max-sm:grid-cols-1">
                     {Array.from({ length: 4 }).map((_, index) => (
-                        <div key={index} className="border rounded-2xl p-5">
-                            <div className="flex justify-between">
-                                <div className="flex flex-col gap-3">
-                                    <div className="h-6 w-48 bg-gray-300 rounded" />
-                                    <div className="h-4 w-40 bg-gray-300 rounded" />
-                                    <div className="h-4 w-56 bg-gray-300 rounded" />
-                                    <div className="h-4 w-32 bg-gray-300 rounded" />
+                        <div key={index} className="border border-[#00000030] shadow-lg rounded-2xl">
+                            <div className="py-5 px-8 flex justify-between gap-3">
+                                <div className="flex flex-col gap-3 w-full">
+                                    <div className="h-6 w-2/3 bg-gray-300 rounded"></div>
+                                    <div className="h-4 w-1/2 bg-gray-300 rounded"></div>
+                                    <div className="h-4 w-3/4 bg-gray-300 rounded"></div>
+                                    <div className="h-4 w-1/3 bg-gray-300 rounded"></div>
                                 </div>
 
-                                <div className="h-6 w-24 bg-gray-300 rounded-2xl" />
+                                <div className="min-w-25 h-6 bg-gray-300 rounded-2xl"></div>
                             </div>
                         </div>
                     ))}
@@ -54,13 +54,13 @@ const EquipmentOverview = () => {
     }
 
     return(
-        <div className="mt-10 w-[70%]">
-            <div className="flex justify-between items-center">
+        <div className="mt-10 w-[70%] max-xl:w-full max-sm:mt-15">
+            <div className="flex justify-between items-center gap-3">
                 <h4 className="text-2xl font-semibold">Огляд обладнання</h4>
-                <Link className="py-2 px-5 font-semibold gray-btn animation-btn" href="/service/overview">Дивитись Усі</Link>
+                <Link className="py-2 px-4 text-sm text-center font-semibold gray-btn animation-btn max-sm:w-1/2" href="/service/overview">Дивитись Усі</Link>
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-5">
+            <div className="mt-5 grid grid-cols-2 gap-5 max-sm:grid-cols-1">
                 {equipment.slice(0, 4).map((item, index) => {
                     const sortedDetails = [...item.equipment_details].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
@@ -69,7 +69,7 @@ const EquipmentOverview = () => {
 
                     return(
                         <div key={index} className="border border-[#00000030] shadow-lg rounded-2xl">
-                            <Link className="py-5 px-8 flex justify-between" href={`/equipment/${item.slug as string}`}>
+                            <Link className="py-5 px-8 flex justify-between gap-3" href={`/equipment/${item.slug as string}`}>
                                 <div className="flex flex-col gap-2">
                                     <p className="text-xl font-semibold">{item.name}</p>
                                     <p className="flex items-center gap-2 capitalize"> < MapPin size={15} strokeWidth={2} /> {item.location}</p>
@@ -77,7 +77,7 @@ const EquipmentOverview = () => {
                                     <p className="flex items-center gap-2 capitalize"> <User size={15} strokeWidth={2} /> {item.users.username}</p>
                                 </div>
                                 <p style={{ backgroundColor: levelConfig?.styleBg }}
-                                    className="w-25 h-fit py-1 text-white text-center text-xs font-semibold rounded-2xl capitalize"    
+                                    className="min-w-25 h-fit py-1 text-white text-center text-xs font-semibold rounded-2xl capitalize"    
                                 >
                                     {sortedDetails.map(details => details.fact)}
                                 </p>
