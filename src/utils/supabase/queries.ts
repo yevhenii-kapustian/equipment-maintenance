@@ -35,7 +35,8 @@ export const getEquipmentWithDetails = async (supabase: ReturnType<typeof create
       users (
         id,
         username,
-        email
+        email,
+        role
       ),
       equipment_details (
         id,
