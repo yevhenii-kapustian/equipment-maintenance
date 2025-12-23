@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 
 const TeamMembers = () => {
     const [users, setUsers] = useState<{id: string, username: string, email: string, role: string | null}[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchTeamMembers = async () => {
@@ -15,10 +16,28 @@ const TeamMembers = () => {
                                             .in("role", ["employee", "admin"])
 
             setUsers(data ?? [])
+            setLoading(false)
         }
 
         fetchTeamMembers()
     }, [])
+
+    if (loading) {
+        return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <div key={index}
+                        className="bg-white shadow-xl rounded-xl border border-[#00000017] p-6 flex flex-col items-center text-center animate-pulse"
+                    >
+                        <div className="w-24 h-24 rounded-full bg-gray-300 mb-4" />
+                        <div className="h-6 w-32 bg-gray-300 rounded mb-2" />
+                        <div className="h-4 w-40 bg-gray-200 rounded mb-2" />
+                        <div className="h-4 w-20 bg-green-200 rounded-full" />
+                    </div>
+                ))}
+            </div>
+        )
+    }
     
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

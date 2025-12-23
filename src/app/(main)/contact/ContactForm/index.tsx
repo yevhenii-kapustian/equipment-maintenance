@@ -15,28 +15,32 @@ const ContactForm = () => {
         <div>
             <h1 className='block w-full mb-10 text-5xl text-start font-semibold'>Зв'язатися</h1>
             <span className='mb-10 block w-full h-1 border-t border-[#e0e0e0]' />
-            <div className='flex items-center gap-5'>
-                <div className='w-[30%] flex flex-col gap-2'>
+            <div className='flex items-center gap-5 max-lg:flex-col'>
+                <div className='w-[30%] flex flex-col gap-2 max-xl:w-full'>
                     <h2 className='text-3xl font-bold text-(--color-army-green)'>Надіслати повідомлення</h2>
                     <p>Зв'яжіться з нами через форму нижче – ми завжди на зв'язку та готові допомогти вам із будь-якими завданнями.</p>
                 </div>
 
-                <form className='w-[70%] p-8 shadow-xl border border-[#00000023] rounded-2xl flex items-center' onSubmit={handleSubmit}>
-                    <div className='w-[30%] mr-8 pr-8 flex flex-col items-center gap-5 border-r border-[#e0e0e0]'>
-                        <div className='flex flex-col items-center gap-1'>
+                <form className='min-w-[70%] p-8 shadow-xl border border-[#00000023] rounded-2xl flex items-center max-xl:w-full max-sm:flex-col max-sm:py-8 max-sm:px-6 max-sm:mt-5' onSubmit={handleSubmit}>
+
+                    <div className='w-full max-w-[30%] mr-8 pr-8 flex flex-col items-center gap-5 border-r 
+                                    border-[#e0e0e0] max-sm:max-w-full max-sm:border-b max-sm:border-r-0
+                                    max-sm:mr-0 max-sm:pr-0 max-sm:mb-8 max-sm:pb-8 max-sm:flex-row max-sm:justify-center'
+                    >
+                        <div className='flex flex-col items-center gap-1 max-sm:w-[50%]'>
                             <Phone className='text-(--color-army-green)' size={35}/>
                             <p className='font-semibold'>Телефон</p>
-                            <p className='text-sm opacity-70'>{`+380 (66) 814 85 60`}</p>
+                            <p className='text-sm text-center opacity-70'>{`+380 (66) 814 85 60`}</p>
                         </div>
 
-                        <div className='flex flex-col items-center gap-1'>
+                        <div className='flex flex-col items-center gap-1 max-sm:w-[50%]'>
                             <Mail className='text-(--color-army-green)' size={35} />
-                            <p className='font-semibold'>Електронна пошта</p>
+                            <p className='font-semibold text-center'>Електронна пошта</p>
                             <p className='text-sm opacity-70'>{`s.kapustian@gmail.com`}</p>
                         </div>
                     </div>
 
-                    <div className='w-[70%]'>
+                    <div className='w-[70%] max-sm:w-full'>
                         <Logo fontSize={35} />
                         <div className='mt-4'>
                             <input id="name" type="name" name="name" placeholder={`Введіть своє ім'я`} required
