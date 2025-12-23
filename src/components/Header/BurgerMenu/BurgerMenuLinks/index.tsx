@@ -5,20 +5,26 @@ import { MoveUpRight } from "lucide-react"
 
 type BurgerMenuLinksProps = {
     user: User | null
-    closeMenu: () => void
+    closeMenu: () => void,
+    isAdmin: boolean,
+    isEmployee: boolean
 }
 
-export const BurgerMenuLinks = ({ user, closeMenu }: BurgerMenuLinksProps) => (
+export const BurgerMenuLinks = ({ user, closeMenu, isAdmin, isEmployee }: BurgerMenuLinksProps) => (
     <>
         <li className="pt-5 border-t border-[#e0e0e0]">
             <a className="block w-full" href="/" onClick={closeMenu}>Головна</a>
         </li>
-        <li className="pt-5 border-t border-[#e0e0e0]">
-            <a className="block w-full" href="/equipment" onClick={closeMenu}>Обладнання</a>
-        </li>
-        <li className="pt-5 border-t border-[#e0e0e0]">
-            <a className="block w-full" href="/service" onClick={closeMenu}>Обслуговування</a>
-        </li>
+        {((isAdmin || isEmployee) && (
+            <>
+            <li className="pt-5 border-t border-[#e0e0e0]">
+                <a className="block w-full" href="/equipment" onClick={closeMenu}>Обладнання</a>
+            </li>
+            <li className="pt-5 border-t border-[#e0e0e0]">
+                <a className="block w-full" href="/service" onClick={closeMenu}>Обслуговування</a>
+            </li>
+            </>
+        ))}
         <li className="pt-5 border-t border-[#e0e0e0]">
             <a className="block w-full" href="/team" onClick={closeMenu}>Команда</a>
         </li>

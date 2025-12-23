@@ -39,7 +39,7 @@ const EquipmentFilter = ({ categories, onCategorySelect, selectedCategory }: Equ
             </button>
 
             {isOpen && (
-                <div className="mt-2 absolute top-full right-0 max-sm:left-0 w-48 bg-white border border-[#e0e0e0] rounded-lg shadow-lg z-10 overflow-hidden">
+                <div className="mt-2 absolute top-full right-0 w-48 bg-white border border-[#e0e0e0] rounded-lg shadow-lg z-10 overflow-hidden">
                     <button
                         onClick={handleClearFilter}
                         className={`w-full text-left px-4 py-3 transition-colors border-b border-[#e0e0e0] bg-[#f7ffe9] cursor-pointer`}

@@ -71,10 +71,10 @@ const EquipmentOverview = () => {
                         <div key={index} className="border border-[#00000030] shadow-lg rounded-2xl">
                             <Link className="py-5 px-8 flex justify-between gap-3" href={`/equipment/${item.slug as string}`}>
                                 <div className="flex flex-col gap-2">
-                                    <p className="text-xl font-semibold">{item.name}</p>
-                                    <p className="flex items-center gap-2 capitalize"> < MapPin size={15} strokeWidth={2} /> {item.location}</p>
-                                    <p className="flex items-center gap-2"> <CalendarDays size={15} strokeWidth={2} /> Наступне: {item.equipment_details.map(item => item.schedule)}</p>
-                                    <p className="flex items-center gap-2 capitalize"> <User size={15} strokeWidth={2} /> {item.users.username}</p>
+                                    <p className="text-xl font-semibold max-sm:text-base">{item.name}</p>
+                                    <p className="flex items-center gap-2 capitalize max-sm:text-sm"> < MapPin size={15} strokeWidth={2} /> {item.location}</p>
+                                    <p className="flex items-center gap-2 max-sm:text-sm"> <CalendarDays size={15} strokeWidth={2} /> Наступне: {item.equipment_details.map(item => item.schedule)}</p>
+                                    <p className="flex items-center gap-2 capitalize max-sm:text-sm"> <User size={15} strokeWidth={2} /> {item.users.username}</p>
                                 </div>
                                 <p style={{ backgroundColor: levelConfig?.styleBg }}
                                     className="min-w-25 h-fit py-1 text-white text-center text-xs font-semibold rounded-2xl capitalize"    

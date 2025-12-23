@@ -2,17 +2,17 @@
 
 import { User } from "@supabase/supabase-js"
 import { useState, useEffect } from "react"
-import { useIsMobile } from "@/hooks/useIsMobile"
-
 import { BurgerMenuButton } from "./BurgerMenuButton"
 import { BurgerMenuPanel } from "./BurgerMenuPanel"
 import { BurgerMenuLinks } from "./BurgerMenuLinks"
 
 type BurgerMenuProps = {
-    user: User | null
+    user: User | null,
+    isAdmin: boolean,
+    isEmployee: boolean
 }
 
-const BurgerMenu = ({ user }: BurgerMenuProps) => {
+const BurgerMenu = ({ user, isEmployee, isAdmin }: BurgerMenuProps) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleMenu = () => {
@@ -43,7 +43,7 @@ const BurgerMenu = ({ user }: BurgerMenuProps) => {
             <BurgerMenuButton isOpen={isOpen} onClick={toggleMenu} />
 
             <BurgerMenuPanel isOpen={isOpen}>
-                <BurgerMenuLinks user={user} closeMenu={closeMenu} />
+                <BurgerMenuLinks isAdmin={isAdmin} isEmployee={isEmployee} user={user} closeMenu={closeMenu} />
             </BurgerMenuPanel>
         </div>
     )
